@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参与项目与论文发表</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: #eef2f8;
+            color: #1f2d3d;
+        }
+        .container {
+            width: 1120px;
+            max-width: 94%;
+            margin: 0 auto;
+        }
+        header, footer {
+            background: #1e3a8a;
+            color: #fff;
+        }
+        header {
+            padding: 18px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 44px;
+            letter-spacing: 1px;
+        }
+        nav {
+            background: #243b7a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        nav .nav-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 10px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover { border-color: #b5c8ff; }
+        .hero {
+            margin-top: 18px;
+            padding: 22px;
+            border-radius: 12px;
+            color: #fff;
+            background: linear-gradient(135deg, #1f4bb2, #335fc8);
+        }
+        .hero h2 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+        .hero p {
+            margin: 0;
+            opacity: 0.95;
+        }
+        .hero-metrics {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .metric {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .metric .v { font-size: 22px; font-weight: bold; line-height: 1.2; }
+        .metric .k { font-size: 12px; opacity: 0.95; }
+        main {
+            margin: 18px auto 0;
+            display: block;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #dbe4f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .card h3 {
+            margin: 0 0 12px;
+            font-size: 28px;
+        }
+        .timeline {
+            border-left: 4px solid #b8ccff;
+            padding-left: 12px;
+        }
+        .project-item {
+            background: #f8fbff;
+            border: 1px solid #dbe4f0;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .project-item:last-child { margin-bottom: 0; }
+        .project-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+        .project-title {
+            font-weight: bold;
+            color: #1f3f86;
+        }
+        .project-time {
+            color: #5a6c8d;
+            font-size: 13px;
+        }
+        .badge {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 3px 10px;
+            font-size: 12px;
+            border: 1px solid #c8d7ff;
+            background: #ecf2ff;
+            color: #2851a2;
+            margin-right: 6px;
+        }
+        .paper-list {
+            display: grid;
+            gap: 10px;
+        }
+        .collapse-item {
+            border: 1px solid #dbe4f0;
+            border-radius: 10px;
+            background: #fff;
+            overflow: hidden;
+        }
+        .collapse-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 12px;
+        }
+        .collapse-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .summary-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .paper-title {
+            margin: 0;
+            font-weight: bold;
+            color: #1e3a8a;
+            line-height: 1.5;
+        }
+        .summary-meta {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #4e5f7c;
+        }
+        .fold-hint {
+            color: #3359aa;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .collapse-item[open] {
+            border-color: #bfd1fa;
+            box-shadow: inset 0 0 0 1px #e5edff;
+        }
+        .paper-detail {
+            border-top: 1px dashed #d7e3fb;
+            padding: 12px;
+            background: #fbfdff;
+            font-size: 14px;
+            color: #43536f;
+            line-height: 1.8;
+        }
+        .paper-detail dl {
+            margin: 0;
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            row-gap: 4px;
+        }
+        .paper-detail dt {
+            font-weight: bold;
+            color: #274a93;
+        }
+        .paper-detail dd {
+            margin: 0;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            margin-top: 8px;
+            border: 1px solid;
+        }
+        .ok { color: #18794e; border-color: #99d5b8; background: #effbf4; }
+        .review { color: #8a5a00; border-color: #f0cf8f; background: #fff8ea; }
+        .revise { color: #a23a2a; border-color: #efb2aa; background: #fff3f1; }
+        .note {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f8fbff;
+            border: 1px dashed #c7d8f8;
+            color: #40526d;
+            font-size: 14px;
+        }
+        footer {
+            padding: 12px 0;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+        @media (max-width: 1020px) {
+            .hero-metrics {
+                grid-template-columns: 1fr;
+            }
+            .paper-detail dl {
+                grid-template-columns: 1fr;
+            }
+            .fold-hint {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container"><h1>参与项目与论文发表</h1></div>
+    </header>
+    <nav>
+        <div class="container nav-inner">
+            <a href="example1-9.html">首页</a>
+            <a href="example1-9-profile.html">学业背景</a>
+            <a href="example1-9-research.html">科研项目及成果</a>
+            <a href="example1-9-awards.html">竞赛经历及获奖</a>
+        </div>
+    </nav>
+
+    <section class="container hero">
+        <h2>科研实践与成果总览</h2>
+        <p>围绕项目课题与目标，持续开展研究并推进成果转化。</p>
+        <div class="hero-metrics">
+            <div class="metric">
+                <div class="v">3</div>
+                <div class="k">在研/完成项目</div>
+            </div>
+            <div class="metric">
+                <div class="v">4</div>
+                <div class="k">论文成果</div>
+            </div>
+            <div class="metric">
+                <div class="v">1</div>
+                <div class="k">软件著作权</div>
+            </div>
+            <div class="metric">
+                <div class="v">CV</div>
+                <div class="k">核心方向</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="card">
+            <h3>科研项目</h3>
+            <div class="timeline">
+                <article class="project-item">
+                    <div class="project-head">
+                        <div class="project-title">国家级大学生创新创业项目（优秀结项）</div>
+                        <div class="project-time">2024.05 - 2026.05</div>
+                    </div>
+                    <div><span class="badge">负责人</span><span class="badge">钢材缺陷检测</span></div>
+                    <p>围绕钢材表面缺陷检测开展模型设计与实验验证，形成阶段性论文成果。</p>
+                </article>
+
+                <article class="project-item">
+                    <div class="project-head">
+                        <div class="project-title">国家级大学生创新创业项目（中期优秀）</div>
+                        <div class="project-time">2025.05 - 2027.05</div>
+                    </div>
+                    <div><span class="badge">核心成员</span><span class="badge">水下目标检测</span></div>
+                    <p>参与水下目标检测算法的改进研究与实验，推进复杂场景检测性能提升。</p>
+                </article>
+
+                <article class="project-item">
+                    <div class="project-head">
+                        <div class="project-title">辽宁省科学技术计划项目（应用基础研究计划）</div>
+                        <div class="project-time">2026.01 - 2028.01</div>
+                    </div>
+                    <div><span class="badge">本科培养人才</span><span class="badge">智慧农业</span></div>
+                    <p>参与虫害检测算法改进与结果分析，服务农业智能识别场景。</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>论文发表与学术成果</h3>
+            <div class="paper-list">
+                <details class="collapse-item">
+                    <summary>
+                        <div class="summary-top">
+                            <div>
+                                <p class="paper-title">Steel Surface Defect Detection Based on YOLOv12</p>
+                                <p class="summary-meta">期刊：Engineering Letters（中科院4区）｜作者身份：第一作者</p>
+                            </div>
+                            <span class="fold-hint">点击展开详情</span>
+                        </div>
+                        <span class="status ok">已见刊</span>
+                    </summary>
+                    <div class="paper-detail">
+                        <dl>
+                            <dt>全体作者</dt><dd>林宇涵、张玉军、杨栋森、管伟春、候东浩、王泉盛、邢文博</dd>
+                            <dt>作者单位</dt><dd>辽宁科技大学计算机与软件工程学院</dd>
+                            <dt>卷(期)/页码</dt><dd>Volume 33,Issue 12,Paper Pages 4806-4817,December 2025</dd>
+                            <dt>通讯作者</dt><dd>张玉军</dd>
+                            <dt>论文链接</dt><dd>https://www.engineeringletters.com/issues_v33/issue_12/EL_33_12_08.pdf</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="collapse-item">
+                    <summary>
+                        <div class="summary-top">
+                            <div>
+                                <p class="paper-title">HC-CSCC: A Cross-Scale Consistency Constraint Method for Steel Surface Defect Detection</p>
+                                <p class="summary-meta">期刊：Nondestructive Testing and Evaluation（中科院2区）｜作者身份：第一作者</p>
+                            </div>
+                            <span class="fold-hint">点击展开详情</span>
+                        </div>
+                        <span class="status review">同行评审</span>
+                    </summary>
+                    <div class="paper-detail">
+                        <dl>
+                            <dt>全体作者</dt><dd>林宇涵、王泉盛、王星宇、周宇康平、尹航</dd>
+                            <dt>作者单位</dt><dd>辽宁科技大学计算机与软件工程学院</dd>
+                            <dt>通讯作者</dt><dd>尹航</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="collapse-item">
+                    <summary>
+                        <div class="summary-top">
+                            <div>
+                                <p class="paper-title">DLFE-YOLO: An Enhanced Framework for Underwater Object Detection Based on YOLOv8</p>
+                                <p class="summary-meta">期刊：Intelligent Marine Technology and Systems（EI源刊）｜作者身份：第一作者</p>
+                            </div>
+                            <span class="fold-hint">点击展开详情</span>
+                        </div>
+                        <span class="status ok">已见刊</span>
+                    </summary>
+                    <div class="paper-detail">
+                        <dl>
+                            <dt>全体作者</dt><dd>林宇涵、张媛媛、杨栋森、周宇康平、王龙涛</dd>
+                            <dt>作者单位</dt><dd>辽宁科技大学计算机与软件工程学院、辽宁科技大学机械工程学院</dd>
+                            <dt>DOI</dt><dd>https://doi.org/10.1007/s44295-025-00088-x</dd>
+                            <dt>卷期</dt><dd>Volume 3,Issue 4,December 2025</dd>
+                            <dt>通讯作者</dt><dd>张媛媛</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="collapse-item">
+                    <summary>
+                        <div class="summary-top">
+                            <div>
+                                <p class="paper-title">Red Chili Pests Detection Method Based on Improved YOLOv8n</p>
+                                <p class="summary-meta">期刊：Crop Protection（中科院2区）｜作者身份：共同第一作者</p>
+                            </div>
+                            <span class="fold-hint">点击展开详情</span>
+                        </div>
+                        <span class="status revise">大修中</span>
+                    </summary>
+                    <div class="paper-detail">
+                        <dl>
+                            <dt>全体作者</dt><dd>林宇涵、朱婧怡、王泉盛、尹航、甘鹏飞</dd>
+                            <dt>作者单位</dt><dd>辽宁科技大学计算机与软件工程学院、西北农林科技大学植物保护学院</dd>
+                            <dt>通讯作者</dt><dd>尹航、甘鹏飞</dd>
+                        </dl>
+                    </div>
+                </details>
+
+                <details class="collapse-item">
+                    <summary>
+                        <div class="summary-top">
+                            <div>
+                                <p class="paper-title">智慧驱动的稻田虫害检测系统（软件著作权）</p>
+                                <p class="summary-meta">成果类型：软件著作权｜作者身份：第一作者</p>
+                            </div>
+                            <span class="fold-hint">点击展开详情</span>
+                        </div>
+                        <span class="status ok">已登记</span>
+                    </summary>
+                    <div class="paper-detail">
+                        <dl>
+                            <dt>全体作者</dt><dd>林宇涵、尹航、杨栋森、王泉盛</dd>
+                            <dt>作者单位</dt><dd>辽宁科技大学计算机与软件工程学院</dd>
+                            <dt>登记号</dt><dd>软著登字第17611300号</dd>
+                            <dt>证书号</dt><dd>2026SR0397019</dd>
+                        </dl>
+                    </div>
+                </details>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">© 2026 学术个人主页</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学业背景与自我介绍</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: #eef2f8;
+            color: #1f2d3d;
+        }
+        .container {
+            width: 1120px;
+            max-width: 94%;
+            margin: 0 auto;
+        }
+        header, footer {
+            background: #1e3a8a;
+            color: #fff;
+        }
+        header {
+            padding: 18px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 46px;
+            letter-spacing: 1px;
+        }
+        nav {
+            background: #243b7a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        nav .nav-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 10px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover {
+            border-color: #b5c8ff;
+        }
+        .profile-banner {
+            margin-top: 18px;
+            background: linear-gradient(135deg, #1f4bb2, #335fc8);
+            color: #fff;
+            border-radius: 12px;
+            padding: 22px;
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 18px;
+            align-items: center;
+        }
+        .name {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 0 6px;
+        }
+        .sub {
+            margin: 0;
+            opacity: 0.95;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(160px, 1fr));
+            gap: 10px;
+        }
+        .meta-item {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 14px;
+        }
+        main {
+            margin: 18px auto 0;
+            display: grid;
+            grid-template-columns: 2fr 1.2fr;
+            gap: 16px;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #dbe4f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .card h2 {
+            margin: 0 0 14px;
+            font-size: 28px;
+        }
+        .edu-timeline {
+            border-left: 4px solid #b8ccff;
+            padding-left: 14px;
+        }
+        .edu-item {
+            background: #f6f9ff;
+            border: 1px solid #dbe4f0;
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .edu-time {
+            color: #3259a8;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .kpi {
+            border: 1px solid #dbe4f0;
+            background: #f8fbff;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .kpi-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .kpi-link .kpi {
+            transition: all 0.2s ease;
+        }
+        .kpi-link:hover .kpi {
+            border-color: #b8ccff;
+            box-shadow: 0 4px 12px rgba(47, 84, 200, 0.12);
+            transform: translateY(-1px);
+        }
+        .kpi .v {
+            font-size: 22px;
+            font-weight: bold;
+            color: #214797;
+            line-height: 1.2;
+        }
+        .kpi .k {
+            font-size: 13px;
+            color: #5b6b85;
+        }
+        .honor-box {
+            border: 1px dashed #b8c8e9;
+            background: #f9fbff;
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .honor-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: #2f5ac0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .honor-link:hover {
+            text-decoration: underline;
+        }
+        .desc {
+            line-height: 1.8;
+            color: #2a3748;
+        }
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            background: #edf2ff;
+            color: #1e3a8a;
+            border: 1px solid #cfdbff;
+            border-radius: 999px;
+            padding: 5px 10px;
+            font-size: 13px;
+        }
+        .score-item {
+            margin-bottom: 10px;
+        }
+        .score-head {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        .bar {
+            height: 8px;
+            background: #e8eef8;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .bar span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, #4068c9, #5d83e3);
+        }
+        .score-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: #edf2ff;
+            border: 1px solid #cfdbff;
+            color: #2f5ac0;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .score-link:hover {
+            background: #dfe9ff;
+        }
+        footer {
+            padding: 12px 0;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+        @media (max-width: 980px) {
+            .profile-banner,
+            main {
+                grid-template-columns: 1fr;
+            }
+            .kpi-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container"><h1>学业背景与自我介绍</h1></div>
+    </header>
+    <nav>
+        <div class="container nav-inner">
+            <a href="example1-9.html">首页</a>
+            <a href="example1-9-profile.html">学业背景</a>
+            <a href="example1-9-research.html">科研项目及成果</a>
+            <a href="example1-9-awards.html">竞赛经历及获奖</a>
+        </div>
+    </nav>
+
+    <section class="container profile-banner">
+        <div>
+            <p class="name">林宇涵</p>
+            <p class="sub">辽宁科技大学 · 网络工程（国一流学科建设）</p>
+            <p class="sub">研究兴趣：计算机视觉、人工智能、生物信息工程</p>
+        </div>
+        <div class="meta-grid">
+            <div class="meta-item">政治面貌：共青团员</div>
+            <div class="meta-item">籍贯：河南省郑州市</div>
+            <div class="meta-item">联系电话：1664223169</div>
+            <div class="meta-item">邮箱：ustl_lyh@163.com</div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div>
+            <section class="card">
+                <h2>教育经历</h2>
+                <div class="edu-timeline">
+                    <div class="edu-item">
+                        <div class="edu-time">2023.09 - 2027.06</div>
+                        <div>辽宁科技大学 · 计算机与软件工程学院</div>
+                        <div>网络工程（国一流学科建设） · 本科</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>学业表现</h2>
+                <div class="kpi-row">
+                    <a class="kpi-link" href="./certificates/绩点.pdf" target="_blank" rel="noopener">
+                        <div class="kpi">
+                            <div class="v">4.32 / 5</div>
+                            <div class="k">学分绩点</div>
+                        </div>
+                    </a>
+                    <a class="kpi-link" href="./certificates/综合排名.pdf" target="_blank" rel="noopener">
+                        <div class="kpi">
+                            <div class="v">1 / 143</div>
+                            <div class="k">综合排名</div>
+                        </div>
+                    </a>
+                    <a class="kpi-link" href="./certificates/CET.pdf" target="_blank" rel="noopener">
+                        <div class="kpi">
+                            <div class="v">CET-6</div>
+                            <div class="k">英语能力</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="honor-box">
+                    荣誉称号：校一等奖学金（2次）、校三好学生标兵、团活动积极分子
+                    <a class="honor-link" href="./certificates/荣誉称号证明.pdf" target="_blank" rel="noopener">查看荣誉证明文件</a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>个人陈述</h2>
+                <p class="desc">我对计算机视觉方向具有基础，深入学习了目标检测、分类与分割等基础任务，擅长将理论方法与工程实现结合完成实验验证。</p>
+                <p class="desc">个人非常希望能够攻读硕士、博士学位，期望在硕士阶段不断提升自己的专业能力，拓宽知识面。通过努力不断进步，提高自身科研能力，可以在科研中获得兴趣，逐渐成为一名合格的科研工作者，希望硕士毕业后能够继续攻读博士学位或从事科研工作，目标是在自身研究领域做出具有价值的科研成果。</p>
+            </section>
+        </div>
+
+        <div>
+            <section class="card">
+                <h2>技能结构</h2>
+                <div style="margin-bottom:10px; color:#4a5d7a;">编程与框架</div>
+                <div class="tag-group" style="margin-bottom:12px;">
+                    <span class="tag">Python</span>
+                    <span class="tag">C/C++</span>
+                    <span class="tag">PyTorch</span>
+                    <span class="tag">PHP</span>
+                </div>
+                <div style="margin-bottom:10px; color:#4a5d7a;">科研与写作工具</div>
+                <div class="tag-group" style="margin-bottom:12px;">
+                    <span class="tag">LaTeX</span>
+                    <span class="tag">Visio</span>
+                    <span class="tag">Origin</span>
+                </div>
+                <div style="margin-bottom:10px; color:#4a5d7a;">开发环境</div>
+                <div class="tag-group">
+                    <span class="tag">Ubuntu</span>
+                    <span class="tag">Manjaro</span>
+                    <span class="tag">Red Hat</span>
+                    <span class="tag">CentOS</span>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>核心课程成绩</h2>
+                <div class="score-item">
+                    <div class="score-head"><span>Python程序设计</span><strong>100</strong></div>
+                    <div class="bar"><span style="width:100%;"></span></div>
+                </div>
+                <div class="score-item">
+                    <div class="score-head"><span>计算机网络</span><strong>100</strong></div>
+                    <div class="bar"><span style="width:100%;"></span></div>
+                </div>
+                <div class="score-item">
+                    <div class="score-head"><span>数据结构</span><strong>100</strong></div>
+                    <div class="bar"><span style="width:100%;"></span></div>
+                </div>
+                <div class="score-item">
+                    <div class="score-head"><span>Linux系统管理</span><strong>96</strong></div>
+                    <div class="bar"><span style="width:96%;"></span></div>
+                </div>
+                <div class="score-item">
+                    <div class="score-head"><span>计算机原理</span><strong>96</strong></div>
+                    <div class="bar"><span style="width:96%;"></span></div>
+                </div>
+                <div class="score-item">
+                    <div class="score-head"><span>操作系统</span><strong>96</strong></div>
+                    <div class="bar"><span style="width:96%;"></span></div>
+                </div>
+                <div class="score-item" style="margin-bottom:0;">
+                    <div class="score-head"><span>C++程序设计</span><strong>96</strong></div>
+                    <div class="bar"><span style="width:96%;"></span></div>
+                </div>
+                <a class="score-link" href="./certificates/成绩单.pdf" target="_blank" rel="noopener">查看全部成绩单</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">© 2026 学术个人主页</div>
+    </footer>
+</body>
+</html>

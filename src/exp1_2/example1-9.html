@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>学术个人主页 - 首页</title>
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: "Microsoft YaHei", Arial, sans-serif;
+			background: #eef2f8;
+			color: #1f2d3d;
+			line-height: 1.6;
+		}
+		.container {
+			width: 1120px;
+			max-width: 94%;
+			margin: 0 auto;
+		}
+		header, footer {
+			background: #1e3a8a;
+			color: #fff;
+			padding: 18px 0;
+		}
+		header h1 {
+			margin: 0;
+			font-size: 46px;
+			letter-spacing: 1px;
+		}
+		header p {
+			margin: 8px 0 0;
+			opacity: 0.95;
+		}
+		nav {
+			background: #243b7a;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		}
+		nav .nav-inner {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+		nav ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: flex;
+			gap: 8px;
+		}
+		nav a {
+			display: inline-block;
+			color: #fff;
+			text-decoration: none;
+			padding: 12px 10px;
+			border-bottom: 2px solid transparent;
+		}
+		nav a:hover { border-color: #b5c8ff; }
+		.home-banner {
+			margin-top: 18px;
+			background: linear-gradient(135deg, #1f4bb2, #335fc8);
+			color: #fff;
+			border-radius: 12px;
+			padding: 22px;
+			display: grid;
+			grid-template-columns: 2fr 3fr;
+			gap: 18px;
+			align-items: center;
+		}
+		.banner-title {
+			font-size: 34px;
+			font-weight: bold;
+			margin: 0 0 6px;
+		}
+		.banner-sub {
+			margin: 0;
+			opacity: 0.95;
+		}
+		.meta-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(180px, 1fr));
+			gap: 10px;
+		}
+		.meta-item {
+			background: rgba(255, 255, 255, 0.12);
+			border: 1px solid rgba(255, 255, 255, 0.25);
+			border-radius: 10px;
+			padding: 10px;
+			font-size: 14px;
+		}
+		.layout {
+			display: grid;
+			grid-template-columns: 2fr 1.2fr;
+			gap: 16px;
+			margin: 18px auto;
+		}
+		.card {
+			background: #fff;
+			border: 1px solid #dbe4f0;
+			border-radius: 12px;
+			padding: 16px;
+			margin-bottom: 16px;
+		}
+		h2, h3 {
+			margin: 0 0 12px;
+		}
+		.kpi-row {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 10px;
+			margin-bottom: 12px;
+		}
+		.kpi {
+			border: 1px solid #dbe4f0;
+			background: #f8fbff;
+			border-radius: 10px;
+			padding: 12px;
+			text-align: center;
+		}
+		.kpi .v {
+			font-size: 22px;
+			font-weight: bold;
+			color: #214797;
+			line-height: 1.2;
+		}
+		.kpi .k {
+			font-size: 13px;
+			color: #5b6b85;
+		}
+		.quick-list {
+			padding-left: 20px;
+			margin: 0;
+			line-height: 1.9;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 10px;
+		}
+		th, td {
+			border: 1px solid #dbe4f0;
+			padding: 8px;
+			text-align: left;
+		}
+		th {
+			background: #f3f7ff;
+			color: #274a93;
+		}
+		figure {
+			margin: 0;
+			text-align: center;
+		}
+		.avatar-frame {
+			width: 150px;
+			height: 190px;
+			margin: 0 auto;
+			padding: 5px;
+			border-radius: 16px;
+			background: linear-gradient(180deg, #edf2ff, #dfe8ff);
+			box-shadow: 0 6px 16px rgba(47, 84, 200, 0.16);
+		}
+		figure img {
+			width: 150px;
+			height: 180px;
+			object-fit: cover;
+			background: #fff;
+			border-radius: 12px;
+			border: 1px solid #dbe4f0;
+		}
+		figure figcaption {
+			margin-top: 8px;
+			color: #40526d;
+		}
+		.details-box {
+			border: 1px dashed #b8c8e9;
+			background: #f9fbff;
+			border-radius: 10px;
+			padding: 10px 12px;
+		}
+		.tag-group {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+		footer {
+			padding: 12px 0;
+			margin-top: 18px;
+			font-size: 14px;
+		}
+		.tag {
+			display: inline-block;
+			background: #edf2ff;
+			color: #1e3a8a;
+			border: 1px solid #cfdbff;
+			padding: 5px 10px;
+			border-radius: 999px;
+			font-size: 13px;
+		}
+		@media (max-width: 980px) {
+			.home-banner,
+			.layout,
+			.kpi-row {
+				grid-template-columns: 1fr;
+			}
+			.meta-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1>林宇涵 · 学术个人主页</h1>
+		</div>
+	</header>
+
+	<nav>
+		<div class="container nav-inner">
+			<ul>
+				<li><a href="example1-9.html">首页</a></li>
+				<li><a href="example1-9-profile.html">学业背景</a></li>
+				<li><a href="example1-9-research.html">科研项目及成果</a></li>
+				<li><a href="example1-9-awards.html">竞赛经历及获奖</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<section class="container home-banner">
+		<div>
+			<p class="banner-title">欢迎访问我的学术个人主页</p>
+		</div>
+		<div class="meta-grid">
+			<div class="meta-item">当前状态：本科在读</div>
+			<div class="meta-item">预计毕业：2027年6月</div>
+			<div class="meta-item">院系：计算机与软件工程学院</div>
+			<div class="meta-item">专业：网络工程（国一流学科建设）</div>
+		</div>
+	</section>
+
+	<main class="container layout">
+		<div>
+			<section class="card">
+				<h2>欢迎页</h2>
+				<p>欢迎访问我的学术个人主页。本网站主要展示我的教育背景、科研项目、论文成果与竞赛获奖信息。</p>
+				<p>当前状态：<mark>本科在读</mark>（辽宁科技大学计算机与软件工程学院，网络工程），预计毕业时间：<time datetime="2027-06">2027年6月</time>。</p>
+				<div class="details-box">
+					<strong>近期目标</strong>
+					<ol>
+						<li>持续发表高质量论文并推进在审论文</li>
+						<li>完成国家级大创项目后续研究工作</li>
+						<li>提升科研能力，规划攻读硕士/博士学位</li>
+					</ol>
+				</div>
+			</section>
+
+			<section class="card">
+				<h3>快速导览</h3>
+				<ul class="quick-list">
+					<li><strong>学业背景与自我介绍页：</strong>查看教育经历、技能结构与个人陈述。</li>
+					<li><strong>参与项目与论文发表页：</strong>查看项目清单、论文信息与学术活动。</li>
+					<li><strong>竞赛与获奖信息页：</strong>查看竞赛记录、奖项明细与证书摘要。</li>
+				</ul>
+			</section>
+
+			<section class="card">
+				<h3>页面概览</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>页面名称</th>
+							<th>主要内容</th>
+							<th>更新时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>学业背景与自我介绍</td>
+							<td>教育背景、成绩排名、技能与个人目标</td>
+							<td>2026-03-18</td>
+						</tr>
+						<tr>
+							<td>参与项目与论文发表</td>
+							<td>大创项目、省科计划项目、论文与软著成果</td>
+							<td>2026-03-18</td>
+						</tr>
+						<tr>
+							<td>竞赛与获奖信息</td>
+							<td>国赛/省赛获奖清单与证书下载入口</td>
+							<td>2026-03-18</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</div>
+
+		<aside class="card">
+			<figure>
+				<div class="avatar-frame">
+					<img src="myphoto.png" alt="个人头像占位图">
+				</div>
+				<figcaption>个人资料卡</figcaption>
+			</figure>
+			<hr>
+			<p><strong>姓名：</strong>林宇涵</p>
+			<p><strong>籍贯：</strong>河南省郑州市</p>
+			<p><strong>政治面貌：</strong>共青团员</p>
+			<p><strong>电话：</strong>1664223169</p>
+			<p><strong>邮箱：</strong><a href="mailto:ustl_lyh@163.com">ustl_lyh@163.com</a></p>
+			<p><strong>ORCID：</strong><a href="0009-0001-6200-773X" target="_blank">https://orcid.org/0009-0001-6200-773X</a></p>
+			<p><strong>兴趣方向：</strong></p>
+			<p class="tag-group">
+				<span class="tag">目标检测</span>
+				<span class="tag">图像分割</span>
+				<span class="tag">工业视觉</span>
+			</p>
+			<p><strong>常用工具：</strong><code>Python</code>、<code>C/C++</code>、<code>PyTorch</code>、<code>LaTeX</code></p>
+			<blockquote>
+				“通过不断实践提升科研能力，不断探索科研世界的风景，不断超越自我。”
+			</blockquote>
+			<address>
+				<div>所在单位：辽宁科技大学 计算机与软件工程学院</div>
+				<div>地址：辽宁省鞍山市立山区千山中路189号5号楼B526</div>
+			</address>
+		</aside>
+	</main>
+
+	<footer>
+		<div class="container">
+			<small>© 2026 学术个人主页 | 最后维护时间：2026-03-18</small>
+		</div>
+	</footer>
+</body>
+</html>

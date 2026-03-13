@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竞赛与获奖信息</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: #eef2f8;
+            color: #1f2d3d;
+        }
+        .container {
+            width: 1120px;
+            max-width: 94%;
+            margin: 0 auto;
+        }
+        header, footer {
+            background: #1e3a8a;
+            color: #fff;
+        }
+        header {
+            padding: 18px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 44px;
+            letter-spacing: 1px;
+        }
+        nav {
+            background: #243b7a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        nav .nav-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 10px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover { border-color: #b5c8ff; }
+        .hero {
+            margin-top: 18px;
+            border-radius: 12px;
+            padding: 22px;
+            color: #fff;
+            background: linear-gradient(135deg, #1f4bb2, #335fc8);
+        }
+        .hero h2 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+        .hero p {
+            margin: 0;
+            opacity: 0.95;
+        }
+        .metrics {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .metric {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .metric .v {
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        .metric .k {
+            font-size: 12px;
+            opacity: 0.95;
+        }
+        main {
+            margin: 18px auto 0;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #dbe4f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .card h3 {
+            margin: 0 0 12px;
+            font-size: 28px;
+        }
+        .intro-list {
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #dbe4f0;
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+        thead th {
+            background: #f3f7ff;
+            color: #274a93;
+            border-bottom: 1px solid #dbe4f0;
+            padding: 10px;
+            text-align: left;
+        }
+        tbody td {
+            border-top: 1px solid #edf2fb;
+            padding: 10px;
+            vertical-align: top;
+        }
+        tbody tr:nth-child(even) {
+            background: #fbfdff;
+        }
+        .level {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            border: 1px solid;
+            white-space: nowrap;
+        }
+        .national {
+            color: #7a4f00;
+            border-color: #f0cf8f;
+            background: #fff8ea;
+        }
+        .province {
+            color: #1e4f9b;
+            border-color: #c8d8f7;
+            background: #eef4ff;
+        }
+        .btn-link {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            background: #edf2ff;
+            border: 1px solid #cfdbff;
+            color: #274a93;
+            font-size: 13px;
+        }
+        .btn-link:hover {
+            background: #dfe9ff;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .summary-item {
+            background: #f8fbff;
+            border: 1px solid #dbe4f0;
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .summary-item h4 {
+            margin: 0 0 8px;
+            color: #1f438f;
+            font-size: 17px;
+        }
+        .summary-item p {
+            margin: 0;
+            line-height: 1.8;
+            color: #3d4f6b;
+            font-size: 14px;
+        }
+        .tag-row {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            background: #edf2ff;
+            color: #1e3a8a;
+            border: 1px solid #cfdbff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 13px;
+        }
+        .note {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f8fbff;
+            border: 1px dashed #c7d8f8;
+            color: #40526d;
+            font-size: 14px;
+        }
+        footer {
+            padding: 12px 0;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+        @media (max-width: 1020px) {
+            .metrics,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container"><h1>竞赛与获奖信息</h1></div>
+    </header>
+    <nav>
+        <div class="container nav-inner">
+            <a href="example1-9.html">首页</a>
+            <a href="example1-9-profile.html">学业背景</a>
+            <a href="example1-9-research.html">科研项目及成果</a>
+            <a href="example1-9-awards.html">竞赛经历及获奖</a>
+        </div>
+    </nav>
+
+    <section class="container hero">
+        <h2>竞赛成果总览</h2>
+        <div class="metrics">
+            <div class="metric">
+                <div class="v">12+</div>
+                <div class="k">代表性奖项</div>
+            </div>
+            <div class="metric">
+                <div class="v">5</div>
+                <div class="k">国家级奖项</div>
+            </div>
+            <div class="metric">
+                <div class="v">7</div>
+                <div class="k">省一等奖</div>
+            </div>
+            <div class="metric">
+                <div class="v">21</div>
+                <div class="k">其余省二/省三</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="card">
+            <h3>获奖信息</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>奖项名称</th>
+                            <th>等级</th>
+                            <th>赛项类型</th>
+                            <th>证书下载</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024.11</td>
+                            <td>全球校园人工智能算法大赛</td>
+                            <td><span class="level national">国赛三等奖</span></td>
+                            <td>Briads 超声影像分割分类挑战赛</td>
+                            <td><a class="btn-link" href="./certificates/2024-11.png" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.10</td>
+                            <td>全国大学生数字媒体及科创作品大赛</td>
+                            <td><span class="level national">国赛二等奖</span></td>
+                            <td>智慧软硬件设计赛</td>
+                            <td><a class="btn-link" href="./certificates/2025-10-1.jpg" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.10</td>
+                            <td>全国大学生数字媒体及科创作品大赛</td>
+                            <td><span class="level national">国赛三等奖</span></td>
+                            <td>乡村振兴专项赛</td>
+                            <td><a class="btn-link" href="./certificates/2025-10-2.jpg" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.11</td>
+                            <td>中国大学生机械创新创意大赛</td>
+                            <td><span class="level national">国赛三等奖</span></td>
+                            <td>智能装备设计大赛</td>
+                            <td><a class="btn-link" href="./certificates/2025-11.jpg" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.12</td>
+                            <td>全国三维数字化创新设计大赛</td>
+                            <td><span class="level national">国赛二等奖</span></td>
+                            <td>低空经济专项赛</td>
+                            <td><a class="btn-link" href="./certificates/2025-12.pdf" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024.06</td>
+                            <td>辽宁省计算机博弈大赛</td>
+                            <td><span class="level province">省一等奖</span></td>
+                            <td>苏拉卡尔塔棋赛项</td>
+                            <td><a class="btn-link" href="./certificates/2024-06.jpg" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.06</td>
+                            <td>辽宁省计算机博弈大赛</td>
+                            <td><span class="level province">省一等奖</span></td>
+                            <td>苏拉卡尔塔棋赛项</td>
+                            <td><a class="btn-link" href="./certificates/2025-06-博弈大赛-省一.pdf" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.10</td>
+                            <td>辽宁省中软国际卓越杯-AI挑战赛</td>
+                            <td><span class="level province">省一等奖</span></td>
+                            <td>智慧生活赛项</td>
+                            <td><a class="btn-link" href="./certificates/2025-10-卓越杯AI-省一.pdf" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.11</td>
+                            <td>辽宁省智慧农业创新创业大赛</td>
+                            <td><span class="level province">省一等奖</span></td>
+                            <td>智慧农业创新技术赛项</td>
+                            <td><a class="btn-link" href="./certificates/2025-11-智慧农业-省一.pdf" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.12</td>
+                            <td>辽宁省智慧体育创新创业大赛</td>
+                            <td><span class="level province">省一等奖</span></td>
+                            <td>体育+人工智能赛项</td>
+                            <td><a class="btn-link" href="./certificates/2025-12-智慧体育-省一.pdf" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.12</td>
+                            <td>辽宁省智能技术应用大赛</td>
+                            <td><span class="level province">省一等奖</span></td>
+                            <td>人工智能赛道</td>
+                            <td><a class="btn-link" href="./certificates/2025-12-1.png" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.12</td>
+                            <td>辽宁省大数据应用与分析大赛</td>
+                            <td><span class="level province">省一等奖</span></td>
+                            <td>数智应用创新赛</td>
+                            <td><a class="btn-link" href="./certificates/2025-12-大数据应用-省一.pdf" target="_blank" rel="noopener">查看证明</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">© 2026 学术个人主页</div>
+    </footer>
+</body>
+</html>
