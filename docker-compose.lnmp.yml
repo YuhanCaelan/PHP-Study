@@ -1,0 +1,56 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: lnmp-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  php:
+    image: php:8.3-fpm-alpine
+    container_name: lnmp-php
+    volumes:
+      - ./src:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/php.ini
+
+  db:
+    image: mariadb:11
+    container_name: lnmp-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: lnmp-phpmyadmin
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
+
+  browsersync:
+    image: node:20-alpine
+    container_name: lnmp-browsersync
+    working_dir: /workspace
+    volumes:
+      - ./src:/workspace
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    command: >
+      sh -c "npm_config_yes=true npx browser-sync start --proxy http://nginx --files '**/*.php,**/*.html,**/*.css,**/*.js' --no-open --port 3000 --ui-port 3001 --reload-debounce 200"
+    depends_on:
+      - nginx
+
+volumes:
+  db_data:
