@@ -1,0 +1,49 @@
+services:
+  web:
+    image: php:8.3-apache
+    container_name: lamp-web
+    ports:
+      - "8081:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/php.ini
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:11
+    container_name: lamp-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: lamp-phpmyadmin
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
+
+  browsersync:
+    image: node:20-alpine
+    container_name: lamp-browsersync
+    working_dir: /workspace
+    volumes:
+      - ./src:/workspace
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    command: >
+      sh -c "npm_config_yes=true npx browser-sync start --proxy http://web --files '**/*.php,**/*.html,**/*.css,**/*.js' --no-open --port 3000 --ui-port 3001 --reload-debounce 200"
+    depends_on:
+      - web
+
+volumes:
+  db_data:
